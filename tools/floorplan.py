@@ -169,7 +169,10 @@ def verify(file=OUTPUT, manifest_file=MANIFEST, *, sampled_logic_counts=None):
     direct_shapes = [
         (layer, shape) for layer in layout.layer_indexes() for shape in top.each_shape(layer)
     ]
-    if len(direct_shapes) != 1 or direct_shapes[0][0] != layout.layer(BOUNDARY):
+    expected_top_shapes = Counter({layout.layer(BOUNDARY): 1})
+    if sampled_logic_counts:
+        expected_top_shapes.update({layout.layer(8, 0): 2, layout.layer(8, 25): 2})
+    if Counter(layer for layer, _ in direct_shapes) != expected_top_shapes:
         raise ValueError("Expected only the die boundary in the top cell")
     expected = Counter()
     named_boxes = [(name, kdb.Box(*map(db_units, group["region_um"]))) for name, group in groups.items()]

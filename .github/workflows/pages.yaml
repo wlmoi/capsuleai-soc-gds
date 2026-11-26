@@ -33,7 +33,7 @@ jobs:
           cp site/index.html site/styles.css site/viewer.js _site/
           cp layout/preview.png layout/placement.json layout/sg13g2-preview.lyp _site/assets/
           cp gds/capsoc_floorplan.gds gds/capsoc_floorplan.oas _site/assets/
-          cp gds/capsoc_explorer.oas _site/tinytapeout-floorplan.oas
+          cp gds/capsoc_explorer.oas _site/tinytapeout-view.oas
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
