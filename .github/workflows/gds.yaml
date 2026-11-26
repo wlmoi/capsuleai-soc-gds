@@ -14,12 +14,14 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - run: python tools/floorplan.py --verify
+      - run: python tools/export_explorer.py
       - uses: actions/upload-artifact@v4
         with:
           name: capsoc-layout-preview
           path: |
             gds/capsoc_floorplan.gds
             gds/capsoc_floorplan.oas
+            gds/capsoc_explorer.oas
             layout/preview.png
             layout/placement.json
             layout/sg13g2-preview.lyp

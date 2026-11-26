@@ -2,7 +2,7 @@
 
 PicoRV32, akselerator CNN, dan 26 makro SRAM pada die 4.040 × 2.800 µm. Struktur repo mengikuti [Tiny Tapeout IHP 26b](https://github.com/TinyTapeout/tinytapeout-ihp-26b/tree/main).
 
-[Tiny Tapeout Explorer](https://gds-explorer.tinytapeout.com/viewer?file=https%3A%2F%2Fwlmoi.github.io%2Fcapsuleai-soc-gds%2Ftinytapeout.oas&pdk=ihp-sg13g2) · [GitHub Pages dan preview 2D](https://wlmoi.github.io/capsuleai-soc-gds/) · [GDSII](gds/capsoc_floorplan.gds) · [OASIS](gds/capsoc_floorplan.oas)
+[Tiny Tapeout Explorer](https://gds-explorer.tinytapeout.com/viewer?file=https%3A%2F%2Fwlmoi.github.io%2Fcapsuleai-soc-gds%2Ftinytapeout-preview.oas&pdk=ihp-sg13g2) · [GitHub Pages dan preview 2D](https://wlmoi.github.io/capsuleai-soc-gds/) · [GDSII](gds/capsoc_floorplan.gds) · [OASIS lengkap](gds/capsoc_floorplan.oas)
 
 | Direktori | Isi |
 |---|---|
