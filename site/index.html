@@ -8,6 +8,7 @@
   <title>CapsuleAI SoC · GDSII Floorplan</title>
   <link rel="stylesheet" href="styles.css">
   <script src="viewer.js" defer></script>
+  <script src="die-viewer.js" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -31,10 +32,52 @@
     </section>
 
     <nav class="view-links" aria-label="Tampilan layout">
-      <a class="primary" href="https://gds-explorer.tinytapeout.com/viewer?file=https%3A%2F%2Fwlmoi.github.io%2Fcapsuleai-soc-gds%2Ftinytapeout-view.oas&amp;pdk=ihp-sg13g2">Buka Tiny Tapeout Explorer</a>
+      <a class="primary" href="#viewer-3d">Tampilan 3D</a>
+      <a href="https://gds-explorer.tinytapeout.com/viewer?file=https%3A%2F%2Fwlmoi.github.io%2Fcapsuleai-soc-gds%2Ftinytapeout-view.oas&amp;pdk=ihp-sg13g2">Tiny Tapeout Explorer</a>
       <a href="#layout">Preview 2D &amp; SRAM</a>
-      <a href="assets/capsoc_floorplan.oas" download>Unduh OASIS lengkap</a>
     </nav>
+
+    <section class="die-viewer" id="viewer-3d" aria-labelledby="die-title">
+      <div class="die-header">
+        <div>
+          <h2 id="die-title">Layout GDSII · 3D</h2>
+          <p id="die-help">Seret untuk memutar. Klik area 3D lalu gulir untuk zoom.</p>
+        </div>
+        <a class="die-download" href="assets/capsoc_floorplan.gds" download>Unduh GDSII</a>
+      </div>
+      <div class="die-stage" id="die-stage" tabindex="0" role="region"
+           aria-label="Tampilan 3D die CapsuleAI" aria-describedby="die-help die-note">
+        <div class="die-model" id="die-model" aria-hidden="true">
+          <div class="die-substrate"></div>
+          <img class="die-plane" data-plane="active" style="--height: 1" src="assets/layers/active.png" width="1440" height="1008" alt="" draggable="false">
+          <img class="die-plane" data-plane="poly" style="--height: 2" src="assets/layers/poly.png" width="1440" height="1008" alt="" draggable="false">
+          <img class="die-plane" data-plane="metal1" style="--height: 3" src="assets/layers/metal1.png" width="1440" height="1008" alt="" draggable="false">
+          <img class="die-plane" data-plane="metal2" style="--height: 4" src="assets/layers/metal2.png" width="1440" height="1008" alt="" draggable="false">
+          <img class="die-plane" data-plane="metal3" style="--height: 5" src="assets/layers/metal3.png" width="1440" height="1008" alt="" draggable="false">
+          <img class="die-plane" data-plane="metal4" style="--height: 6" src="assets/layers/metal4.png" width="1440" height="1008" alt="" draggable="false">
+        </div>
+        <p class="die-error" id="die-error" hidden>Sebagian layer gagal dimuat. <a href="#layout">Lihat render 2D.</a></p>
+      </div>
+      <div class="die-toolbar">
+        <div class="die-actions" role="group" aria-label="Kamera">
+          <button type="button" id="die-out" aria-label="Perkecil">−</button>
+          <button type="button" id="die-in" aria-label="Perbesar">+</button>
+          <button type="button" id="die-top">Tampak atas</button>
+          <button type="button" id="die-reset">Reset</button>
+        </div>
+        <label class="die-gap" for="die-gap">Jarak layer <input type="range" id="die-gap" min="1" max="22" value="8"></label>
+      </div>
+      <fieldset class="die-layers">
+        <legend>Layer yang ditampilkan</legend>
+        <label style="--swatch: #ac8de7"><input type="checkbox" data-layer="active" checked>Area aktif</label>
+        <label style="--swatch: #ec8bc1"><input type="checkbox" data-layer="poly" checked>Poly</label>
+        <label style="--swatch: #7db8ff"><input type="checkbox" data-layer="metal1" checked>Metal 1</label>
+        <label style="--swatch: #56dbc1"><input type="checkbox" data-layer="metal2" checked>Metal 2</label>
+        <label style="--swatch: #f0bd6b"><input type="checkbox" data-layer="metal3" checked>Metal 3</label>
+        <label style="--swatch: #d1e4ff"><input type="checkbox" data-layer="metal4" checked>Metal 4</label>
+      </fieldset>
+      <p class="die-note" id="die-note">Enam layer dirender dari GDSII. Jarak vertikal diperbesar untuk melihat tiap layer.</p>
+    </section>
 
     <section class="explorer" id="layout" aria-label="Penjelajah layout">
       <figure class="board">
@@ -69,10 +112,11 @@
     <section class="resources" aria-labelledby="files">
       <div>
         <h2 id="files">File layout</h2>
-        <p>Explorer 3D menampilkan batas blok, sampel standard cell, dan sebagian layer SRAM. File GDSII dan OASIS lengkap memuat seluruh geometri penempatan. Routing dan koneksi SRAM ke logika masih terbuka.</p>
+        <p>File GDSII dan OASIS memuat seluruh geometri penempatan. Routing dan koneksi SRAM ke logika masih terbuka.</p>
       </div>
       <div class="links">
         <a class="primary" href="assets/capsoc_floorplan.gds" download>Unduh GDSII</a>
+        <a href="assets/capsoc_floorplan.oas" download>Unduh OASIS</a>
         <a href="assets/placement.json">Data koordinat</a>
         <a href="assets/sg13g2-preview.lyp" download>Palet KLayout</a>
       </div>

@@ -35,6 +35,30 @@ h2 { margin: 0; font-size: 1.22rem; line-height: 1.25; letter-spacing: -.028em; 
 .metrics small { font-size: .85rem; font-weight: 600; }
 .view-links { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem 1.35rem; margin: 0 0 1.3rem; font-size: .94rem; }
 .view-links .primary { font-weight: 700; }
+.die-viewer { margin: 0 0 1.25rem; overflow: hidden; border: 1px solid #354661; border-radius: 12px; background: #101a2a; color: #e4eef8; }
+.die-header, .die-toolbar { display: flex; justify-content: space-between; align-items: center; gap: .65rem 1.25rem; padding: .9rem 1rem; }
+.die-header p { color: #bdd0e4; font-size: .875rem; margin: .25rem 0 0; }
+.die-download, .die-error a { color: #9fe8ed; flex-shrink: 0; font-size: .9rem; }
+.die-stage { height: clamp(19rem, 44vw, 33rem); position: relative; overflow: hidden; perspective: 1050px; touch-action: none; cursor: grab; background: radial-gradient(ellipse at 50% 41%, #233652, #0b1321 75%); }
+.die-stage:active { cursor: grabbing; }
+.die-stage:focus-visible { outline-offset: -3px; }
+.die-model { --pitch: 38deg; --yaw: -20deg; --zoom: 1; --gap: 8px; position: absolute; top: 47%; left: 50%; width: clamp(12rem, 59%, 40rem); aspect-ratio: 10 / 7; user-select: none; pointer-events: none; transform-style: preserve-3d; transform: translate(-50%, -50%) scale(var(--zoom)) rotateX(var(--pitch)) rotateZ(var(--yaw)); }
+.die-plane { position: absolute; inset: 0; display: block; width: 100%; height: auto; transform: translateZ(calc(var(--height) * var(--gap))); }
+.die-substrate { position: absolute; inset: 1.4% .98%; background: #1a2840; border: 1px solid #637c9c; box-shadow: 0 4px 0 #101929, 0 14px 28px #050912; transform: translateZ(0); }
+.die-toolbar { border-top: 1px solid #354661; border-bottom: 1px solid #354661; flex-wrap: wrap; }
+.die-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+.die-actions button { min-height: 2.45rem; min-width: 2.45rem; padding: .25rem .65rem; color: #edf6ff; background: #243550; border: 1px solid #5b7393; border-radius: 7px; font-size: .9rem; cursor: pointer; }
+.die-actions button:hover { background: #354e70; }
+.die-viewer :focus-visible { outline-color: #93e4eb; }
+.die-gap { display: flex; align-items: center; gap: .65rem; font-size: .9rem; }
+.die-gap input { width: min(9rem, 37vw); }
+.die-viewer input { accent-color: #93e4eb; }
+.die-layers { display: flex; flex-wrap: wrap; border: 0; padding: 0; margin: .6rem 1rem 0; gap: .25rem 1rem; }
+.die-layers legend { color: #bdd0e4; font-size: .875rem; margin-bottom: .25rem; }
+.die-layers label { display: flex; gap: .35rem; align-items: center; font-size: .9rem; min-height: 2rem; cursor: pointer; }
+.die-layers input { accent-color: var(--swatch); margin: 0; }
+.die-note { padding: 0 1rem .85rem; margin: .35rem 0 0; font-size: .875rem; color: #bdd0e4; }
+.die-error { position: absolute; margin: 0; inset: auto 1rem 1rem; background: #101a2a; padding: .55rem .75rem; border-radius: 6px; }
 .explorer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17rem, .31fr); gap: 1rem; align-items: stretch; }
 .board { background: var(--board); border: 1px solid #27394e; border-radius: 12px; overflow: hidden; margin: 0; color: #dbeaf1; }
 .board-title, figcaption { padding: .66rem 1rem; font-size: .88rem; }
@@ -85,4 +109,7 @@ select { width: 100%; min-height: 2.6rem; border: 1px solid #9cb0c1; border-radi
   .metrics div { padding-left: .42rem; }
   .metrics dt { font-size: .79rem; }
   .metrics dd { font-size: .97rem; }
+  .die-model { width: 73%; }
+  .die-header { align-items: flex-start; }
+  .die-download { flex-shrink: 1; }
 }
