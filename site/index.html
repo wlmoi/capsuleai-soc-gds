@@ -6,7 +6,7 @@
   <meta name="description" content="Jelajahi layout GDSII CapsuleAI SoC dan penempatan 26 makro SRAM IHP SG13G2.">
   <meta name="theme-color" content="#101a2a">
   <title>CapsuleAI SoC · GDSII Floorplan</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3d-layers">
   <script src="viewer.js" defer></script>
   <script src="die-viewer.js" defer></script>
 </head>
@@ -81,7 +81,10 @@
 
     <section class="explorer" id="layout" aria-label="Penjelajah layout">
       <figure class="board">
-        <div class="board-title"><span>capsoc_floorplan</span><a href="assets/preview.png">Buka gambar</a></div>
+        <div class="board-title">
+          <span>capsoc_floorplan</span>
+          <div class="board-links"><a href="#viewer-3d">Buka 3D</a><a href="assets/preview.png">Buka gambar</a></div>
+        </div>
         <div class="canvas">
           <img src="assets/preview.png" width="1440" height="1008"
                alt="Render GDSII dengan PicoRV32, akselerator CNN, serta SRAM firmware di kiri dan bank SRAM lain di kanan.">
