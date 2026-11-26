@@ -32,7 +32,8 @@ module cnn_engine #(
     input  wire [7:0]  reg_addr,
     input  wire [31:0] reg_wdata,
     output reg  [31:0] reg_rdata,
-    output wire        irq_done
+    output wire        irq_done,
+    output wire        busy
 );
     `include "layers.vh"
     localparam N = 4;
@@ -316,6 +317,7 @@ module cnn_engine #(
         end
     end
     assign irq_done = done_r;
+    assign busy = busy_r;
 
     always @* begin
         reg_rdata = 32'd0;

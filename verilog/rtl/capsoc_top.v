@@ -9,7 +9,8 @@ module capsoc_top #(
     parameter FW    = "firmware.hex",
     parameter WMEM  = "weights.mem",
     parameter QMEM  = "requant.mem",
-    parameter FRAME = "frame.mem"
+    parameter FRAME = "frame.mem",
+    parameter CPU_SLEEP = 1
 ) (
     input  wire        clk,
     input  wire        rst_n,
@@ -24,11 +25,30 @@ module capsoc_top #(
     wire [3:0]  mem_wstrb;
     reg  [31:0] mem_rdata;
 
+    wire engine_busy;
+    wire cpu_clk;
+    generate if (CPU_SLEEP) begin : sleep_clock
+        wire keep_running = !rst_n || !engine_busy || mem_ready;
+`ifdef SYNTH
+        sg13g2_lgcp_1 gate (.CLK(clk), .GATE(keep_running), .GCLK(cpu_clk));
+`else
+        reg clock_enabled;
+        // Let the CPU acknowledge start before sleeping. The low-phase
+        // latch keeps enable changes from truncating a high clock pulse.
+        always @*
+            if (!clk)
+                clock_enabled <= keep_running;
+        assign cpu_clk = clk && clock_enabled;
+`endif
+    end else begin : running_clock
+        assign cpu_clk = clk;
+    end endgenerate
+
     picorv32 #(
         .ENABLE_MUL(1), .ENABLE_DIV(1), .COMPRESSED_ISA(1), .ENABLE_IRQ(0),
         .PROGADDR_RESET(32'h0000_0000), .STACKADDR(32'h0000_4000)
     ) u_cpu (
-        .clk(clk), .resetn(rst_n), .trap(trap),
+        .clk(cpu_clk), .resetn(rst_n), .trap(trap),
         .mem_valid(mem_valid), .mem_instr(mem_instr), .mem_ready(mem_ready),
         .mem_addr(mem_addr), .mem_wdata(mem_wdata), .mem_wstrb(mem_wstrb), .mem_rdata(mem_rdata),
         .mem_la_read(), .mem_la_write(), .mem_la_addr(), .mem_la_wdata(), .mem_la_wstrb(),
@@ -40,13 +60,14 @@ module capsoc_top #(
     wire sel_ram = mem_addr[31:28] == 4'h0;
     wire sel_eng = mem_addr[31:28] == 4'h1;
     wire sel_gp  = mem_addr[31:28] == 4'h2;
-    wire        req = mem_valid && !mem_ready;
+    wire        req = mem_valid && !mem_ready && (!CPU_SLEEP || !engine_busy);
     wire [31:0] ram_rdata, eng_rdata;
     sram32 #(.FILE(FW)) u_ram (.clk(clk), .en(req && sel_ram), .we(mem_wstrb), .addr(mem_addr[13:2]),
                                .wdata(mem_wdata), .rdata(ram_rdata));
     cnn_engine #(.WMEM(WMEM), .QMEM(QMEM), .FRAME(FRAME)) u_eng (
         .clk(clk), .rst_n(rst_n), .reg_en(req && sel_eng), .reg_we(|mem_wstrb),
-        .reg_addr(mem_addr[7:0]), .reg_wdata(mem_wdata), .reg_rdata(eng_rdata), .irq_done());
+        .reg_addr(mem_addr[7:0]), .reg_wdata(mem_wdata), .reg_rdata(eng_rdata),
+        .irq_done(), .busy(engine_busy));
 
     reg        was_ram;
     reg [31:0] io_rdata;
