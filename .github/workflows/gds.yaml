@@ -16,9 +16,10 @@ jobs:
       - run: python tools/floorplan.py --verify
       - uses: actions/upload-artifact@v4
         with:
-          name: capsoc-gdsii-preview
+          name: capsoc-layout-preview
           path: |
-            layout/capsoc_floorplan.gds
+            gds/capsoc_floorplan.gds
+            gds/capsoc_floorplan.oas
             layout/preview.png
             layout/placement.json
             layout/sg13g2-preview.lyp

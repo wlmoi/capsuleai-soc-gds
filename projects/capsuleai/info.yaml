@@ -1,0 +1,14 @@
+project:
+  title: CapsuleAI SoC
+  description: PicoRV32 and CNN accelerator with an IHP SRAM placement preview
+  language: Verilog
+  pdk: ihp-sg13g2
+  clock_hz: 25000000
+  rtl_top: capsoc_top
+  layout_top: capsoc_floorplan
+  stage: unrouted_placement_preview
+  layout:
+    gds: gds/capsoc_floorplan.gds
+    oasis: gds/capsoc_floorplan.oas
+    placement: layout/placement.json
+  documentation: docs/info.md

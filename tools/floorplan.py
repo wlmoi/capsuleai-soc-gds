@@ -11,7 +11,8 @@ import klayout.db as kdb
 SPEC = Path("layout/floorplan.json")
 PDK = Path("build/pdk")
 NETLIST = Path("build/capsoc_mapped.json")
-OUTPUT = Path("layout/capsoc_floorplan.gds")
+OUTPUT = Path("gds/capsoc_floorplan.gds")
+OASIS = Path("gds/capsoc_floorplan.oas")
 MANIFEST = Path("layout/placement.json")
 BOUNDARY = kdb.LayerInfo(189, 4)
 DBU = 0.001
@@ -223,13 +224,29 @@ def build():
     options.gds2_write_timestamps = False
     layout.write(str(OUTPUT), options)
     MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    export_oasis()
+
+
+def export_oasis():
     verify()
+    layout = read_layout(OUTPUT)
+    options = kdb.SaveLayoutOptions()
+    options.set_format_from_filename(str(OASIS))
+    options.oasis_compression_level = 0
+    layout.write(str(OASIS), options)
+    verify(OASIS)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--verify", action="store_true", help="check the committed GDS")
-    if parser.parse_args().verify:
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--verify", action="store_true", help="check the committed layout files")
+    mode.add_argument("--export-oasis", action="store_true", help="convert the committed GDS to OASIS")
+    args = parser.parse_args()
+    if args.verify:
         verify()
+        verify(OASIS)
+    elif args.export_oasis:
+        export_oasis()
     else:
         build()

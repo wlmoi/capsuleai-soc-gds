@@ -33,6 +33,8 @@ h2 { margin: 0; font-size: 1.22rem; line-height: 1.25; letter-spacing: -.028em; 
 .metrics dt { color: var(--muted); font-size: .875rem; }
 .metrics dd { margin: 0; font-size: clamp(1.04rem, 2vw, 1.55rem); font-weight: 750; white-space: nowrap; letter-spacing: -.03em; }
 .metrics small { font-size: .85rem; font-weight: 600; }
+.view-links { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem 1.35rem; margin: 0 0 1.3rem; font-size: .94rem; }
+.view-links .primary { font-weight: 700; }
 .explorer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17rem, .31fr); gap: 1rem; align-items: stretch; }
 .board { background: var(--board); border: 1px solid #27394e; border-radius: 12px; overflow: hidden; margin: 0; color: #dbeaf1; }
 .board-title, figcaption { padding: .66rem 1rem; font-size: .88rem; }
@@ -67,8 +69,8 @@ select { width: 100%; min-height: 2.6rem; border: 1px solid #9cb0c1; border-radi
 .resources p { max-width: 41rem; }
 .links { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; font-size: .9rem; }
 .links a { padding: .42rem .7rem; }
-.links .primary { background: #14566b; color: white; text-decoration: none; border-radius: 7px; font-weight: 650; }
-.links .primary:hover { background: #0e4052; }
+.primary { display: inline-block; padding: .55rem .8rem; background: #14566b; color: white; text-decoration: none; border-radius: 7px; font-weight: 650; }
+.primary:hover { background: #0e4052; }
 @media (max-width: 900px) {
   .intro, .resources { align-items: start; flex-direction: column; }
   .intro { gap: 1.2rem; }

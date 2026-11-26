@@ -1,4 +1,4 @@
-read_verilog -sv -DSYNTH -Irtl rtl/mem_models.v rtl/capsoc_top.v rtl/cnn_engine.v rtl/dla_tile.v rtl/pe_array.v rtl/pe_ps.v rtl/requant.v rtl/third_party/picorv32.v
+read_verilog -sv -DSYNTH -Iverilog/rtl verilog/rtl/mem_models.v verilog/rtl/capsoc_top.v verilog/rtl/cnn_engine.v verilog/rtl/dla_tile.v verilog/rtl/pe_array.v verilog/rtl/pe_ps.v verilog/rtl/requant.v verilog/rtl/third_party/picorv32.v
 hierarchy -check -top capsoc_top
 synth -top capsoc_top
 dfflibmap -liberty build/pdk/sg13g2_stdcell_typ_1p20V_25C.lib

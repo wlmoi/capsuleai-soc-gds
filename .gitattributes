@@ -1,3 +1,5 @@
 * text=auto eol=lf
 *.gds binary
+*.oas binary
 *.png binary
+lef/*.lef whitespace=-blank-at-eol
