@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jelajahi layout GDSII CapsuleAI SoC dan penempatan 26 makro SRAM IHP SG13G2.">
+  <meta name="theme-color" content="#101a2a">
+  <title>CapsuleAI SoC · GDSII Floorplan</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="viewer.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead-row">
+      <span class="brand">CapsuleAI <span>SoC</span></span>
+      <a href="https://github.com/wlmoi/capsuleai-soc-gds">Repo GitHub</a>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="title">
+      <div>
+        <p class="eyebrow">IHP SG13G2 <span>·</span> Preview penempatan</p>
+        <h1 id="title">GDSII &amp; SRAM</h1>
+        <p class="lede">Jelajahi penempatan PicoRV32, CNN accelerator, dan empat kelompok SRAM pada die CapsuleAI.</p>
+      </div>
+      <dl class="metrics">
+        <div><dt>Makro SRAM</dt><dd>26</dd></div>
+        <div><dt>Standard cell</dt><dd>78.477</dd></div>
+        <div><dt>Ukuran die</dt><dd>4.040 × 2.800 <small>µm</small></dd></div>
+      </dl>
+    </section>
+
+    <section class="explorer" aria-label="Penjelajah layout">
+      <figure class="board">
+        <div class="board-title"><span>capsoc_floorplan</span><a href="assets/preview.png">Buka gambar</a></div>
+        <div class="canvas">
+          <img src="assets/preview.png" width="1440" height="1008"
+               alt="Render GDSII dengan PicoRV32, akselerator CNN, serta SRAM firmware di kiri dan bank SRAM lain di kanan.">
+          <svg id="overlay" viewBox="0 0 1440 1008" aria-hidden="true" hidden></svg>
+        </div>
+        <figcaption>Render GDSII dari KLayout <span>·</span> Tampak atas</figcaption>
+      </figure>
+
+      <aside class="inspector" aria-labelledby="inspector-title">
+        <h2 id="inspector-title">Bank SRAM</h2>
+        <p>Pilih kelompok atau klik makro pada layout.</p>
+        <div class="filters" role="group" aria-label="Kelompok SRAM">
+          <button type="button" data-group="all" aria-pressed="true" disabled>Semua <span>26</span></button>
+          <button type="button" data-group="activation" aria-pressed="false" disabled>Aktivasi <span>16</span></button>
+          <button type="button" data-group="weights" aria-pressed="false" disabled>Bobot <span>5</span></button>
+          <button type="button" data-group="requant" aria-pressed="false" disabled>Requant <span>3</span></button>
+          <button type="button" data-group="firmware" aria-pressed="false" disabled>Firmware <span>2</span></button>
+        </div>
+        <label for="macro">Makro</label>
+        <select id="macro" disabled><option value="">Pilih makro untuk melihat koordinat</option></select>
+        <div class="details" id="details" aria-live="polite">
+          <p>Bank aktivasi, bobot, dan requant berada di kanan. Dua makro firmware berada di kiri bawah, dekat PicoRV32.</p>
+        </div>
+        <p class="viewer-error" id="viewer-error" hidden>Data koordinat gagal dimuat. Gambar layout tetap dapat dibuka.</p>
+      </aside>
+    </section>
+
+    <section class="resources" aria-labelledby="files">
+      <div>
+        <h2 id="files">File layout</h2>
+        <p>GDSII berisi standard cell dan makro SRAM dari IHP Open PDK pada tahap penempatan. Routing dan koneksi SRAM ke logika masih terbuka.</p>
+      </div>
+      <div class="links">
+        <a class="primary" href="assets/capsoc_floorplan.gds" download>Unduh GDSII</a>
+        <a href="assets/placement.json">Data koordinat</a>
+        <a href="assets/sg13g2-preview.lyp" download>Palet KLayout</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

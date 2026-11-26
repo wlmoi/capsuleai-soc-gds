@@ -2,6 +2,8 @@
 
 Preview fisik CapsuleAI pada IHP SG13G2, dengan 78.477 standard cell hasil sintesis PicoRV32 dan CNN accelerator serta 26 makro SRAM dari IHP Open PDK. Gambar di bawah dirender langsung dari GDSII dengan KLayout.
 
+[Buka penjelajah layout di GitHub Pages](https://wlmoi.github.io/capsuleai-soc-gds/)
+
 ![GDSII CapsuleAI. Logika berada di kiri dan blok SRAM aktivasi serta bobot berada di kanan.](layout/preview.png)
 
 [Unduh GDSII](layout/capsoc_floorplan.gds) · [Koordinat dan orientasi](layout/placement.json) · [Palet layer KLayout](layout/sg13g2-preview.lyp)

@@ -1,0 +1,38 @@
+name: GitHub Pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'layout/**'
+      - '.github/workflows/pages.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Assemble site and layout files
+        run: |
+          mkdir -p _site/assets
+          cp site/index.html site/styles.css site/viewer.js _site/
+          cp layout/preview.png layout/placement.json layout/capsoc_floorplan.gds layout/sg13g2-preview.lyp _site/assets/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+        id: deployment
