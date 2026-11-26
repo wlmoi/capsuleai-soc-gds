@@ -1,0 +1,337 @@
+{
+  "design": "capsoc_floorplan",
+  "stage": "unrouted placement preview",
+  "die_um": [
+    4040,
+    2800
+  ],
+  "logic_regions": {
+    "soc_control": {
+      "instances": 274,
+      "stdcell_lef_area_um2": 7253.971,
+      "rows_used": 2,
+      "region_um": [
+        32,
+        725,
+        1165,
+        790
+      ]
+    },
+    "picorv32": {
+      "instances": 11752,
+      "stdcell_lef_area_um2": 207895.766,
+      "rows_used": 49,
+      "region_um": [
+        32,
+        830,
+        1165,
+        1310
+      ]
+    },
+    "cnn_engine": {
+      "instances": 66451,
+      "stdcell_lef_area_um2": 836041.046,
+      "rows_used": 196,
+      "region_um": [
+        32,
+        1350,
+        1165,
+        2700
+      ]
+    }
+  },
+  "rtl_memory_blackboxes": {
+    "u_eng.u_act": "act_mem",
+    "u_eng.u_q": "qrom_m",
+    "u_eng.u_w": "wrom_m",
+    "u_ram": "sram32"
+  },
+  "sram": [
+    {
+      "name": "firmware_00",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        32.0,
+        60.0,
+        448.64,
+        686.7
+      ]
+    },
+    {
+      "name": "firmware_01",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        484.0,
+        60.0,
+        900.64,
+        686.7
+      ]
+    },
+    {
+      "name": "activation_00",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        1270.0,
+        60.0,
+        1686.64,
+        686.7
+      ]
+    },
+    {
+      "name": "activation_01",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        1722.0,
+        60.0,
+        2138.64,
+        686.7
+      ]
+    },
+    {
+      "name": "activation_02",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        2174.0,
+        60.0,
+        2590.64,
+        686.7
+      ]
+    },
+    {
+      "name": "activation_03",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        2626.0,
+        60.0,
+        3042.64,
+        686.7
+      ]
+    },
+    {
+      "name": "activation_04",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        1270.0,
+        725.0,
+        1686.64,
+        1351.7
+      ]
+    },
+    {
+      "name": "activation_05",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        1722.0,
+        725.0,
+        2138.64,
+        1351.7
+      ]
+    },
+    {
+      "name": "activation_06",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        2174.0,
+        725.0,
+        2590.64,
+        1351.7
+      ]
+    },
+    {
+      "name": "activation_07",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        2626.0,
+        725.0,
+        3042.64,
+        1351.7
+      ]
+    },
+    {
+      "name": "activation_08",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        1270.0,
+        1390.0,
+        1686.64,
+        2016.7
+      ]
+    },
+    {
+      "name": "activation_09",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        1722.0,
+        1390.0,
+        2138.64,
+        2016.7
+      ]
+    },
+    {
+      "name": "activation_10",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        2174.0,
+        1390.0,
+        2590.64,
+        2016.7
+      ]
+    },
+    {
+      "name": "activation_11",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        2626.0,
+        1390.0,
+        3042.64,
+        2016.7
+      ]
+    },
+    {
+      "name": "activation_12",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        1270.0,
+        2055.0,
+        1686.64,
+        2681.7
+      ]
+    },
+    {
+      "name": "activation_13",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        1722.0,
+        2055.0,
+        2138.64,
+        2681.7
+      ]
+    },
+    {
+      "name": "activation_14",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        2174.0,
+        2055.0,
+        2590.64,
+        2681.7
+      ]
+    },
+    {
+      "name": "activation_15",
+      "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        2626.0,
+        2055.0,
+        3042.64,
+        2681.7
+      ]
+    },
+    {
+      "name": "weights_00",
+      "master": "RM_IHPSG13_1P_4096x16_c3_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        3110.0,
+        60.0,
+        3526.64,
+        678.3
+      ]
+    },
+    {
+      "name": "weights_01",
+      "master": "RM_IHPSG13_1P_4096x16_c3_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        3562.0,
+        60.0,
+        3978.64,
+        678.3
+      ]
+    },
+    {
+      "name": "weights_02",
+      "master": "RM_IHPSG13_1P_4096x16_c3_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        3110.0,
+        725.0,
+        3526.64,
+        1343.3
+      ]
+    },
+    {
+      "name": "weights_03",
+      "master": "RM_IHPSG13_1P_4096x16_c3_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        3562.0,
+        725.0,
+        3978.64,
+        1343.3
+      ]
+    },
+    {
+      "name": "weights_04",
+      "master": "RM_IHPSG13_1P_4096x16_c3_bm_bist",
+      "orientation": "FS",
+      "bbox_um": [
+        3110.0,
+        1390.0,
+        3526.64,
+        2008.3
+      ]
+    },
+    {
+      "name": "requant_00",
+      "master": "RM_IHPSG13_1P_512x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        3562.0,
+        1390.0,
+        3978.64,
+        1581.34
+      ]
+    },
+    {
+      "name": "requant_01",
+      "master": "RM_IHPSG13_1P_512x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        3562.0,
+        1600.0,
+        3978.64,
+        1791.34
+      ]
+    },
+    {
+      "name": "requant_02",
+      "master": "RM_IHPSG13_1P_512x32_c2_bm_bist",
+      "orientation": "N",
+      "bbox_um": [
+        3562.0,
+        1810.0,
+        3978.64,
+        2001.34
+      ]
+    }
+  ]
+}

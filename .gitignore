@@ -1,0 +1,6 @@
+/build/
+/mem/*.mem
+/mem/expected.json
+/fw/*.elf
+/fw/*.bin
+__pycache__/

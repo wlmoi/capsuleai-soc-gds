@@ -1,0 +1,121 @@
+{
+ "policy": {
+  "C1": 16,
+  "C2": 8,
+  "C3": 8,
+  "C4": 8,
+  "C5": 8,
+  "C6": 8,
+  "EXIT": 16,
+  "HEAD": 16
+ },
+ "weight_words": 18608,
+ "weight_macros_4096x16": 5,
+ "requant_words": 1044,
+ "layers": [
+  {
+   "name": "C1",
+   "bits": 16,
+   "K": 27,
+   "cout": 16,
+   "groups": 4,
+   "w_base": 0,
+   "w_words": 432,
+   "q_base": 0,
+   "stride": 2,
+   "pool": false,
+   "gap_shift": 0
+  },
+  {
+   "name": "C2",
+   "bits": 8,
+   "K": 144,
+   "cout": 16,
+   "groups": 2,
+   "w_base": 432,
+   "w_words": 1152,
+   "q_base": 96,
+   "stride": 1,
+   "pool": true,
+   "gap_shift": 0
+  },
+  {
+   "name": "C3",
+   "bits": 8,
+   "K": 144,
+   "cout": 24,
+   "groups": 3,
+   "w_base": 1584,
+   "w_words": 1728,
+   "q_base": 192,
+   "stride": 1,
+   "pool": true,
+   "gap_shift": 0
+  },
+  {
+   "name": "C4",
+   "bits": 8,
+   "K": 216,
+   "cout": 32,
+   "groups": 4,
+   "w_base": 3312,
+   "w_words": 3456,
+   "q_base": 336,
+   "stride": 1,
+   "pool": false,
+   "gap_shift": 0
+  },
+  {
+   "name": "C5",
+   "bits": 8,
+   "K": 288,
+   "cout": 32,
+   "groups": 4,
+   "w_base": 6768,
+   "w_words": 4608,
+   "q_base": 528,
+   "stride": 1,
+   "pool": true,
+   "gap_shift": 0
+  },
+  {
+   "name": "C6",
+   "bits": 8,
+   "K": 288,
+   "cout": 48,
+   "groups": 6,
+   "w_base": 11376,
+   "w_words": 6912,
+   "q_base": 720,
+   "stride": 1,
+   "pool": false,
+   "gap_shift": 0
+  },
+  {
+   "name": "EXIT",
+   "bits": 16,
+   "K": 32,
+   "cout": 2,
+   "groups": 1,
+   "w_base": 18288,
+   "w_words": 128,
+   "q_base": 1008,
+   "stride": 1,
+   "pool": false,
+   "gap_shift": 0
+  },
+  {
+   "name": "HEAD",
+   "bits": 16,
+   "K": 48,
+   "cout": 4,
+   "groups": 1,
+   "w_base": 18416,
+   "w_words": 192,
+   "q_base": 1020,
+   "stride": 1,
+   "pool": false,
+   "gap_shift": 0
+  }
+ ]
+}

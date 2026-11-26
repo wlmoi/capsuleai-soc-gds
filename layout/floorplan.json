@@ -1,0 +1,31 @@
+{
+  "design": "capsoc_floorplan",
+  "die_um": [4040, 2800],
+  "logic_regions": {
+    "soc_control": [32, 725, 1165, 790],
+    "picorv32": [32, 830, 1165, 1310],
+    "cnn_engine": [32, 1350, 1165, 2700]
+  },
+  "sram_groups": [
+    {
+      "name": "firmware", "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "count": 2, "columns": 2, "origin_um": [32, 60], "pitch_um": [452, 665],
+      "row_orientations": ["N"]
+    },
+    {
+      "name": "activation", "master": "RM_IHPSG13_1P_2048x32_c2_bm_bist",
+      "count": 16, "columns": 4, "origin_um": [1270, 60], "pitch_um": [452, 665],
+      "row_orientations": ["FS", "N"]
+    },
+    {
+      "name": "weights", "master": "RM_IHPSG13_1P_4096x16_c3_bm_bist",
+      "count": 5, "columns": 2, "origin_um": [3110, 60], "pitch_um": [452, 665],
+      "row_orientations": ["FS", "N"]
+    },
+    {
+      "name": "requant", "master": "RM_IHPSG13_1P_512x32_c2_bm_bist",
+      "count": 3, "columns": 1, "origin_um": [3562, 1390], "pitch_um": [0, 210],
+      "row_orientations": ["N"]
+    }
+  ]
+}

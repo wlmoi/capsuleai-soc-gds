@@ -1,0 +1,24 @@
+name: GDSII preview
+on: [push, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: python tools/floorplan.py --verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: capsoc-gdsii-preview
+          path: |
+            layout/capsoc_floorplan.gds
+            layout/preview.png
+            layout/placement.json
+            layout/sg13g2-preview.lyp

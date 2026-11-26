@@ -1,0 +1,2 @@
+#define T_EXIT (231391358LL)
+#define DELTA (167298935LL)

@@ -1,0 +1,42 @@
+
+7. Printing statistics.
+
+=== picorv32 ===
+
+   Number of wires:               9432
+   Number of wire bits:          11902
+   Number of public wires:         186
+   Number of public wire bits:    2582
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              11519
+     sg13g2_a21o_1                 254
+     sg13g2_a21oi_1               1148
+     sg13g2_a221oi_1                76
+     sg13g2_a22oi_1                361
+     sg13g2_and2_1                 310
+     sg13g2_and3_1                  40
+     sg13g2_and4_1                  13
+     sg13g2_buf_1                   32
+     sg13g2_dfrbpq_1              2124
+     sg13g2_inv_1                  421
+     sg13g2_mux2_1                 513
+     sg13g2_mux4_1                 589
+     sg13g2_nand2_1               1537
+     sg13g2_nand2b_1               142
+     sg13g2_nand3_1                443
+     sg13g2_nand3b_1                13
+     sg13g2_nand4_1                 74
+     sg13g2_nor2_1                 738
+     sg13g2_nor2b_1                225
+     sg13g2_nor3_1                 211
+     sg13g2_nor4_1                  66
+     sg13g2_o21ai_1               1834
+     sg13g2_or2_1                   88
+     sg13g2_or3_1                   10
+     sg13g2_or4_1                    6
+     sg13g2_xnor2_1                145
+     sg13g2_xor2_1                 106
+
+   Chip area for module '\picorv32': 209251.992600
