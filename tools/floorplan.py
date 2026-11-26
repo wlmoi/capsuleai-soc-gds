@@ -157,7 +157,7 @@ def place_sram(layout, top, spec):
     return placed
 
 
-def verify(file=OUTPUT, manifest_file=MANIFEST):
+def verify(file=OUTPUT, manifest_file=MANIFEST, *, sampled_logic_counts=None):
     manifest = json.loads(manifest_file.read_text())
     layout = read_layout(file)
     die = kdb.Box(0, 0, *map(db_units, manifest["die_um"]))
@@ -165,6 +165,7 @@ def verify(file=OUTPUT, manifest_file=MANIFEST):
     if top.name != manifest["design"] or top.bbox() != die:
         raise ValueError("Unexpected GDS top cell or die bounds")
     groups = manifest["logic_regions"]
+    logic_counts = sampled_logic_counts or {name: region["instances"] for name, region in groups.items()}
     direct_shapes = [
         (layer, shape) for layer in layout.layer_indexes() for shape in top.each_shape(layer)
     ]
@@ -187,7 +188,7 @@ def verify(file=OUTPUT, manifest_file=MANIFEST):
             children = list(cell.each_inst())
             if group not in groups or group in inspected:
                 raise ValueError(f"Unexpected logic group: {group}")
-            if len(children) != groups[group]["instances"] or any(
+            if len(children) != logic_counts[group] or any(
                 not child.cell.name.startswith("sg13g2_") or child.cell.is_empty() for child in children
             ):
                 raise ValueError(f"Unexpected GDS logic population for {group}")
@@ -199,8 +200,9 @@ def verify(file=OUTPUT, manifest_file=MANIFEST):
             actual[(cell.name, transform.disp.x, transform.disp.y, transform.is_mirror())] += 1
     if actual != expected or inspected != set(groups):
         raise ValueError("GDS instances differ from the placement manifest")
+    detail = "sampled standard cells" if sampled_logic_counts else "standard cells"
     print(f"{top.name}: {sum(actual.values())} SRAM macros, "
-          f"{sum(group['instances'] for group in groups.values()):,} standard cells. "
+          f"{sum(logic_counts.values()):,} {detail}. "
           "GDS hierarchy and macro placement verified.")
 
 

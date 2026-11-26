@@ -8,6 +8,7 @@ from floorplan import BOUNDARY, OUTPUT, read_layout, verify
 EXPLORER = Path("gds/capsoc_explorer.oas")
 METAL1 = kdb.LayerInfo(8, 0)
 SRAM_LAYERS = [kdb.LayerInfo(layer, 0) for layer in (10, 30, 50)]
+ROW_SAMPLE_STEP = 24
 
 
 def export():
@@ -42,7 +43,7 @@ def export():
             copy_layer(cell, target, METAL1, representative=True)
         else:
             for layer in SRAM_LAYERS:
-                copy_layer(cell, target, layer)
+                copy_layer(cell, target, layer, representative=kind == "sram_detail")
             if kind == "sram":
                 for instance in cell.each_inst():
                     child = copy_master(instance.cell, "sram_detail")
@@ -52,13 +53,19 @@ def export():
 
     original = source.top_cell()
     top = output.create_cell(original.name)
+    logic_counts = {}
     copy_layer(original, top, BOUNDARY)
     for instance in original.each_inst():
         cell = instance.cell
         if cell.name.startswith("logic_"):
             block = output.create_cell(cell.name)
-            for stdcell in cell.each_inst():
-                put_instance(block, stdcell, copy_master(stdcell.cell, "stdcell"))
+            block.shapes(output.layer(BOUNDARY)).insert(cell.bbox())
+            count = 0
+            for number, stdcell in enumerate(cell.each_inst()):
+                if number % ROW_SAMPLE_STEP == 0:
+                    put_instance(block, stdcell, copy_master(stdcell.cell, "stdcell"))
+                    count += 1
+            logic_counts[cell.name.removeprefix("logic_")] = count
         else:
             block = copy_master(cell, "sram")
         put_instance(top, instance, block)
@@ -69,7 +76,7 @@ def export():
     options.set_format_from_filename(str(EXPLORER))
     options.oasis_compression_level = 0
     output.write(str(EXPLORER), options)
-    verify(EXPLORER)
+    verify(EXPLORER, sampled_logic_counts=logic_counts)
 
 
 if __name__ == "__main__":

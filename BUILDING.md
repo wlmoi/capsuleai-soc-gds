@@ -15,6 +15,6 @@ python tools/export_explorer.py
 
 Untuk memindahkan SRAM, ubah `origin_um`, `pitch_um`, atau `row_orientations` di `layout/floorplan.json` dan jalankan ulang ketiga perintah Python terakhir. `python tools/floorplan.py --verify` membaca kedua file layout lengkap dan memeriksa top cell, jumlah standard cell, serta posisi, orientasi, dan batas makro.
 
-Workflow GDS memublikasikan kedua format layout dan render KLayout sebagai artifact. Model 3D untuk Tiny Tapeout Explorer mempertahankan posisi seluruh komponen dan menampilkan bentuk Metal1 per standard cell serta layer Metal2–4 dari dua tingkat hierarki makro SRAM. GDSII dan OASIS lengkap tersedia di GitHub Pages.
+Workflow GDS memublikasikan kedua format layout dan render KLayout sebagai artifact. Model 3D untuk Tiny Tapeout Explorer mempertahankan lokasi semua makro dan blok logika. Model ini memakai sampel Metal1 dari standard cell dan geometri Metal2–4 terpilih dari makro SRAM. GDSII dan OASIS lengkap tersedia di GitHub Pages.
 
 Frame medis dan berkas bobot model tidak termasuk dalam repo. Untuk testbench RTL, gunakan `frame*.mem`, `weights.mem`, dan `requant.mem` dari arsip awal dengan nama dan lokasi yang dirujuk di `tb/tb_soc.v`. Sumber Verilog berada di `verilog/rtl/`.
